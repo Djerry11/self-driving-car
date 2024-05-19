@@ -13,6 +13,7 @@ class Car {
 
     this.controller = new Controller();
   }
+  //drawing the car
   draw(ctx) {
     ctx.save();
     ctx.translate(this.x, this.y);
@@ -23,29 +24,35 @@ class Car {
     ctx.fillStyle = "red";
     ctx.fill();
   }
+  //update the position of the car according to the inputs
   update() {
+    //move forward and backward
     if (this.controller.forward) {
       this.speed += this.acceleration;
     }
     if (this.controller.reverse) {
       this.speed -= this.acceleration;
     }
-
+    //control the top speed for forward and backward
     if (this.speed > this.maxspeed) {
       this.speed = this.maxspeed;
     }
     if (this.speed < -this.maxspeed / 2) {
       this.speed = -this.maxspeed / 2;
     }
+    //decrease the speed gradually
     if (this.speed > 0) {
       this.speed -= this.friction;
     }
+    //move slowly on own
     if (this.speed < 0) {
       this.speed += this.friction;
     }
+    //stop the vehicle
     if (Math.abs(this.speed) < this.friction) {
       this.speed = 0;
     }
+    //for reversing the car on opposite direction
     if (this.speed != 0) {
       const flip = this.speed > 0 ? 1 : -1;
       if (this.controller.left) {
@@ -55,6 +62,7 @@ class Car {
         this.angle -= 0.03 * flip;
       }
     }
+    // calculate the speed and the direction and move accordingly
     this.x -= this.speed * Math.sin(this.angle);
     this.y -= this.speed * Math.cos(this.angle);
   }

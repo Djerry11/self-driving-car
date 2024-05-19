@@ -9,6 +9,7 @@ class Controller {
   }
 
   #addKeyboardListeners() {
+    //on pressed event
     document.onkeydown = (event) => {
       switch (event.key) {
         case "ArrowUp":
@@ -24,8 +25,8 @@ class Controller {
           this.right = true;
           break;
       }
-      //   console.table(this);
     };
+    //on releasing the pressed key
     document.onkeyup = (event) => {
       switch (event.key) {
         case "ArrowUp":
@@ -41,7 +42,6 @@ class Controller {
           this.right = false;
           break;
       }
-      //   console.table(this);
     };
   }
 }
