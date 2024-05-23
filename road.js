@@ -57,7 +57,3 @@ class Road {
     );
   }
 }
-//gives the position between A and B based on the value of t
-function lerp(A, B, t) {
-  return A + (B - A) * t;
-}
